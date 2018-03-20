@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+
+<div id="id"></div>
+<div id="id2"></div>
+<script type="text/javascript">
+
+var str = new Date();
+var t= str.toGMTString();
+
+
+function setCookie(cname,cvalue)
+{
+	document.cookie = cname + "=" + cvalue + "; max-age=86400 ; path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie(cname)
+{   var j;
+	var o;
+	var check = getCookie("lastvisited");
+ 	if(check=="")
+ 	{
+ 		
+ 		j=0;
+ 		j++;
+ 		document.getElementById("id").innerHTML="You have never visited before";
+ 		o =j;
+ 	}
+ 	else
+ 	{
+ 		var tm = getCookie("lastvisited");
+		var k = getCookie("i");
+		k++;
+ 		document.getElementById("id").innerHTML="You Last Visited on "+tm;	
+ 		document.getElementById("id1").innerHTML="You have visited "+k+" number of times";
+ 		o = k;
+ 	}
+    
+ 	setCookie("lastvisited",t);
+    setCookie("i",o);
+}
+
+
+
+
+</script>
+</head>
+<body onload="checkCookie()">
+<div id="id"></div>
+<div id="id1"></div>
+</body>
+</html>
